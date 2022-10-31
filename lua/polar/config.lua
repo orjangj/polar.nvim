@@ -1,3 +1,7 @@
+local collect = require("polar.lib.collect")
+
+local M = {}
+
 local defaults = {
   styles = {
     comments = "NONE",
@@ -9,7 +13,7 @@ local defaults = {
     operators = "NONE",
     strings = "NONE",
     types = "NONE",
-    variables = "NONE",
+    variables = "NONE"
   },
   modules = {
     cmp = true,
@@ -20,8 +24,20 @@ local defaults = {
     nvimtree = true,
     telescope = true,
     treesitter = true,
-    whichkey = true,
+    whichkey = true
   },
 }
 
-return defaults
+M.options = collect.deep_copy(defaults)
+
+function M.set_options(opts)
+  opts = opts or {}
+  M.options = collect.deep_extend(M.options, opts)
+  M.has_options = true
+end
+
+function M.reset()
+  M.options = collect.deep_copy(defaults)
+end
+
+return M

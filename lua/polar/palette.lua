@@ -17,11 +17,6 @@ M.nord13  = "#ebcb8b" -- UI: Warning states, linter markers, git diff. Syntax: O
 M.nord14  = "#a3be8c" -- UI: Success states, linter markers, git diff. Syntax: Main color for strings of any type.
 M.nord15  = "#b48ead" -- UI: Rarely used. Syntax: Numbers of any type.
 M.comment = "#576279" -- nord3 adjusted by 5% according to https://github.com/arcticicestudio/nord/issues/94
-M.ui = {
-  background = { primary = M.nord0, secondary = M.nord1, accent = M.nord3, elevated = M.nord4  },
-  text       = { primary = M.nord4, secondary = M.nord5, accent = M.nord6, elevated = M.nord6  },
-  elements   = { primary = M.nord8, secondary = M.nord9, accent = M.nord7, elevated = M.nord10 },
-}
 M.black   = M.nord0
 M.red     = M.nord11
 M.green   = M.nord14
@@ -31,17 +26,21 @@ M.magenta = M.nord15
 M.cyan    = M.nord8
 M.white   = M.nord4
 M.orange  = M.nord12
-
+M.ui = {
+  background = { primary = M.nord0, secondary = M.nord1, accent = M.nord3, elevated = M.nord4  },
+  text       = { primary = M.nord4, secondary = M.nord5, accent = M.nord6, elevated = M.nord6  },
+  element    = { primary = M.nord8, secondary = M.nord9, accent = M.nord7, elevated = M.nord10 },
+}
 M.syntax = {
   bracket     = M.white,
   builtin0    = M.blue,    -- C++: this. Lua: function, require,
   builtin1    = M.magenta, -- C++: namespace names
   builtin2    = M.magenta, -- C++: NULL, Lua: nil
   builtin3    = M.magenta,
-  comment     = M.comment,      -- This is nord3 adjusted by 5% according to https://github.com/arcticicestudio/nord/issues/94
+  comment     = M.comment,
   conditional = M.blue,
   const       = M.white,   -- TODO: another color? applies to enum values?
-  dep         = M.magenta, -- Deprecated
+  dep         = M.magenta,
   field       = M.white,   -- struct/class/enum variables
   func        = M.cyan,
   ident       = M.white,   -- C++: function parameters
@@ -54,6 +53,18 @@ M.syntax = {
   string      = M.green,
   type        = M.nord7,   -- TODO
   variable    = M.white,
+}
+M.terminal = {
+  -- base
+  M.black, M.red,
+  M.green, M.yellow,
+  M.blue,  M.magenta,
+  M.cyan,  M.white,
+  -- bright
+  M.nord3, M.red,
+  M.green, M.yellow,
+  M.nord10, M.magenta,
+  M.nord7, M.nord6
 }
 
 return M

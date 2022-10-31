@@ -1,8 +1,13 @@
 local M = {}
 
+function M.init(opts)
+  require("polar.config").set_options(opts)
+end
+
+-- TODO: How to set user options
 function M.load()
-  local config = require("polar.config")
-  local groups = require("polar.group")
+  local spec = require("polar.spec")
+  local groups = require("polar.group").load(spec)
 
   -- Initialize the environment
   vim.cmd("hi clear")
@@ -13,18 +18,12 @@ function M.load()
   vim.o.termguicolors = true
   vim.g.colors_name = "polar"
 
-  hl.highlight(groups)
+  require("polar.lib.highlight").highlight(groups)
 
-  -- HACK: There is an issue with `nvim_set_hl` currently where calling `vim.api.nvim_get_hl_by_name("Normal", true)` will
-  -- return `{ [true] = 6 }` if we are using this api_call then we have to set Normal with `:highlight` command to get
-  -- around this for now
-  if util.use_nvim_api then
-    hl.alt_highlight({ Normal = groups.Normal })
-  end
-
-  -- TODO
-  if config.options.terminal_colors then
-    set_terminal_colors(spec)
+  -- Set terminal colors
+  for i, value in ipairs(spec.palette.terminal) do
+    local n = "terminal_color_" .. i - 1
+    vim.g[n] = value
   end
 end
 
