@@ -49,16 +49,16 @@ function M.get(spec, config)
     PmenuThumb   = { bg = ui.element.elevated }, -- Popup menu: Thumb of the scrollbar.
     Question     = { link = "MoreMsg" }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine = { link = "CursorLine" }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search       = { fg = ui.text.primary, bg = ui.background.elevated }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    IncSearch    = { fg = ui.text.primary, bg = ui.element.accent }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Search       = { fg = ui.text.primary, bg = ui.element.elevated }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    IncSearch    = { fg = ui.text.primary, bg = ui.element.secondary }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     CurSearch    = { link = "IncSearch" }, -- Search result under cursor (available since neovim >0.7.0 (https://github.com/neovim/neovim/commit/b16afe4d556af7c3e86b311cfffd1c68a5eed71f)).
     SpecialKey   = { link = "NonText" }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad     = { sp = palette.red, style = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap     = { sp = palette.yellow, style = "undercurl" }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal   = { sp = palette.orange, style = "undercurl" }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare    = { sp = palette.orange, style = "undercurl" }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    StatusLine   = { fg = ui.text.primary, bg = ui.background.secondary }, -- status line of current window
-    StatusLineNC = { fg = ui.text.primary, bg = ui.background.secondary }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    StatusLine   = { fg = ui.background.elevated, bg = ui.background.secondary }, -- status line of current window
+    StatusLineNC = { fg = ui.background.elevated, bg = ui.background.primary }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine      = { fg = ui.text.primary, bg = ui.background.secondary }, -- tab pages line, not active tab page label
     TabLineFill  = { bg = ui.background.secondary }, -- tab pages line, where there are no labels
     TabLineSel   = { fg = ui.element.primary, bg = ui.background.secondary }, -- tab pages line, active tab page label

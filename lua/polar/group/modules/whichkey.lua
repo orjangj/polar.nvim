@@ -8,12 +8,11 @@ function M.get(spec, config, opts)
   -- stylua: ignore
   return {
 		WhichKey = { fg = ui.text.primary, style = "bold" },
-		WhichKeyDesc = { fg = ui.element.primary },
 		WhichKeyGroup = { fg = ui.element.secondary },
 		WhichKeySeperator = { fg = ui.element.secondary },
-		WhichKeyFloating = { bg = ui.background.secondary },
+		WhichKeyDesc = { fg = ui.element.primary },
 		WhichKeyFloat = { bg = ui.background.secondary },
-    WhichKeySeparator = { fg = palette.comment },
+    WhichKeyBorder = { fg = ui.background.accent },
     WhichKeyValue     = { fg = palette.comment },
   }
 end
