@@ -7,15 +7,16 @@ function M.get(spec, config, opts)
   local ui = spec.ui
   -- stylua: ignore
   return {
-		CmpItemKind = { fg = palette.magenta },
+    CmpItemKind              = { fg = palette.magenta },
     CmpDocumentation         = { fg = ui.text.primary, bg = ui.background.primary },
     CmpDocumentationBorder   = { fg = ui.background.accent, bg = ui.background.primary },
     CmpItemAbbr              = { fg = ui.text.primary, },
     CmpItemAbbrDeprecated    = { fg = ui.background.elevated, style = "strikethrough" },
     CmpItemAbbrMatch         = { fg = ui.element.primary },
     CmpItemAbbrMatchFuzzy    = { fg = ui.element.primary },
+    CmpItemMenu              = { fg = ui.element.primary },
+
     CmpItemKindDefault       = { fg = ui.text.primary },
-    CmpItemMenu              = { link = "Comment" },
     CmpItemKindKeyword       = { link = "Identifier" },
     CmpItemKindVariable      = { link = "TSVariable" },
     CmpItemKindConstant      = { link = "TSConstant" },

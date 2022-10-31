@@ -43,10 +43,10 @@ function M.get(spec, config)
     NormalNC     = { fg = ui.text.primary, bg = transparent and "NONE" or ui.background.primary }, -- normal text in non-current windows
     NormalFloat  = { fg = ui.text.primary, bg = ui.background.primary }, -- Normal text in floating windows.
     FloatBorder  = { fg = ui.background.elevated }, -- TODO
-    Pmenu        = { fg = ui.text.primary, bg = ui.background.accent }, -- Popup menu: normal item.
-    PmenuSel     = { bg = ui.background.elevated }, -- Popup menu: selected item.
+    Pmenu        = { fg = ui.text.primary, bg = ui.background.secondary }, -- Popup menu: normal item.
+    PmenuSel     = { bg = ui.background.accent }, -- Popup menu: selected item.
     PmenuSbar    = { link = "Pmenu" }, -- Popup menu: scrollbar.
-    PmenuThumb   = { bg = ui.element.elevated }, -- Popup menu: Thumb of the scrollbar.
+    PmenuThumb   = { bg = ui.element.accent }, -- Popup menu: Thumb of the scrollbar.
     Question     = { link = "MoreMsg" }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine = { link = "CursorLine" }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
     Search       = { fg = ui.text.primary, bg = ui.element.elevated }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
