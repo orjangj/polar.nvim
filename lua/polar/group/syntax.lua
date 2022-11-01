@@ -10,7 +10,8 @@ function M.get(spec, config)
   -- TODO: Go through list and align with Nord recommendations
   -- stylua: ignore
   return {
-    Comment   = { fg = syntax.comment, style = style.comments }, -- any comment
+    Comment = { fg = syntax.comment, style = style.comments }, -- any comment
+
     Constant  = { fg = syntax.const, style = style.constants }, -- (preferred) any constant
     String    = { fg = syntax.string, style = style.strings }, -- a string constant: "this is a string"
     Character = { link = "String" }, -- a character constant: 'c', '\n'
@@ -25,10 +26,9 @@ function M.get(spec, config)
     Conditional = { fg = syntax.conditional, style = style.conditionals }, -- if, then, else, endif, switch, etc.
     Repeat      = { link = "Conditional" }, -- for, do, while, etc.
     Label       = { link = "Conditional" }, -- case, default, etc.
-
-    Operator  = { fg = syntax.operator, style = style.operators }, -- "sizeof", "+", "*", etc.
-    Keyword   = { fg = syntax.keyword, style = style.keywords }, -- any other keyword
-    Exception = { link = "Keyword" }, -- try, catch, throw
+    Operator    = { fg = syntax.operator, style = style.operators }, -- "sizeof", "+", "*", etc.
+    Keyword     = { fg = syntax.keyword, style = style.keywords }, -- any other keyword
+    Exception   = { link = "Keyword" }, -- try, catch, throw
 
     PreProc   = { fg = syntax.preproc }, -- (preferred) generic Preprocessor
     Include   = { link = "PreProc" }, -- preprocessor #include

@@ -1,6 +1,6 @@
 local M = {}
 
--- TODO: go through
+-- TODO: go through all settings.. any missing? any that shouldn't be here?
 function M.get(spec, config)
   local palette = spec.palette
   local ui = spec.ui
@@ -16,10 +16,10 @@ function M.get(spec, config)
     CursorColumn = { link = "CursorLine" }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine   = { bg = ui.background.secondary }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    = { fg = ui.element.secondary }, -- directory names (and other special names in listings)
-    DiffAdd      = { bg = palette.green }, -- diff mode: Added line |diff.txt|
-    DiffChange   = { bg = palette.yellow }, -- diff mode: Changed line |diff.txt|
-    DiffDelete   = { bg = palette.red }, -- diff mode: Deleted line |diff.txt|
-    DiffText     = { bg = palette.yellow }, -- diff mode: Changed text within a changed line |diff.txt|
+    DiffAdd      = { fg = palette.green }, -- diff mode: Added line |diff.txt|
+    DiffChange   = { fg = palette.yellow }, -- diff mode: Changed line |diff.txt|
+    DiffDelete   = { fg = palette.red }, -- diff mode: Deleted line |diff.txt|
+    DiffText     = { fg = palette.yellow }, -- diff mode: Changed text within a changed line |diff.txt|
     EndOfBuffer  = { fg = ui.background.primary }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     -- TermCursor      = {}, -- cursor in a focused terminal
     -- TermCursorNC    = {}, -- cursor in an unfocused terminal
@@ -49,8 +49,8 @@ function M.get(spec, config)
     PmenuThumb   = { bg = ui.element.accent }, -- Popup menu: Thumb of the scrollbar.
     Question     = { link = "MoreMsg" }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine = { link = "CursorLine" }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search       = { fg = ui.text.primary, bg = ui.element.elevated }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    IncSearch    = { fg = ui.text.primary, bg = ui.element.secondary }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Search       = { fg = palette.yellow, style = "italic,bold" }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    IncSearch    = { fg = palette.yellow, sp = palette.yellow, style = "underline,italic,bold" }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     CurSearch    = { link = "IncSearch" }, -- Search result under cursor (available since neovim >0.7.0 (https://github.com/neovim/neovim/commit/b16afe4d556af7c3e86b311cfffd1c68a5eed71f)).
     SpecialKey   = { link = "NonText" }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad     = { sp = palette.red, style = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
@@ -70,10 +70,8 @@ function M.get(spec, config)
     WildMenu     = { link = "Pmenu" }, -- current match in 'wildmenu' completion
     WinBar       = { fg = ui.background.elevated, bg = transparent and "NONE" or ui.background.primary, style = "bold" }, -- Window bar of current window.
     WinBarNC     = { fg = ui.background.elevated, bg = transparent and "NONE" or ui.background.primary, style = "bold" }, --Window bar of not-current windows.
-
     -- qfLineNr        = {},
     -- qfFileName      = {},
-
     -- debugPC         = {}, -- used for highlighting the current line in terminal-debug
     -- debugBreakpoint = {}, -- used for breakpoint colors in terminal-debug
   }
