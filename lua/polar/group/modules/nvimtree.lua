@@ -12,17 +12,17 @@ function M.get(spec, config, opts)
     -- are the defaults set by NvimTree. They're only included here for
     -- completeness and easy access if they need to be changed.
 
-    NvimTreeSymlink          = { fg = palette.magenta },
+    NvimTreeSymlink          = { fg = palette.magenta, style = "bold" },
     NvimTreeFolderName       = { default = true, link = "Directory" },
     NvimTreeRootFolder       = { fg = ui.element.primary, style = "bold" },
     NvimTreeFolderIcon       = { fg = ui.element.secondary },
     NvimTreeFileIcon         = { fg = ui.element.primary },
     NvimTreeEmptyFolderName  = { fg = ui.background.accent }, -- { default = true, link = "Directory" }
     NvimTreeOpenedFolderName = { fg = ui.element.accent }, -- { default = true, link = "Directory" }
-    NvimTreeExecFile         = { fg = palette.green },
-    NvimTreeOpenedFile       = { fg = ui.element.accent }, -- TODO: doesn't seem to have any effect
-    NvimTreeSpecialFile      = { fg = ui.text.primary }, -- TODO
-    NvimTreeImageFile        = { fg = ui.text.primary }, -- TODO
+    NvimTreeExecFile         = { fg = palette.green, style = "bold" },
+    NvimTreeOpenedFile       = { fg = ui.element.accent, style = "bold" }, -- TODO: doesn't seem to have any effect
+    NvimTreeSpecialFile      = { fg = ui.text.primary, style = "underline" }, -- TODO
+    NvimTreeImageFile        = { fg = ui.text.primary, style = "bold" }, -- TODO
     NvimTreeIndentMarker     = { fg = ui.background.elevated },
 
     NvimTreeLspDiagnosticsError       = { default = true, link = "DiagnosticError" },
@@ -41,12 +41,17 @@ function M.get(spec, config, opts)
     -- NvimTreeWindowPicker
 
     -- There are also links to normal bindings to style the tree itself.
-    NvimTreeNormal       = { fg = ui.text.primary, bg = config.transparent and "NONE" or ui.background.primary },
-    NvimTreeEndOfBuffer  = { fg = "NONE" }, -- { default = true, link = "NonText" },
+    NvimTreeNormal       = { fg = ui.text.primary, bg = config.transparent and "NONE" or ui.background.secondary },
+    NvimTreeEndOfBuffer  = { fg = config.transparent and "NONE" or ui.background.secondary }, -- { default = true, link = "NonText" },
     NvimTreeCursorLine   = { default = true, link = "CursorLine" },
     NvimTreeCursorLineNr = { default = true, link = "CursorLineNr" },
     NvimTreeLineNr       = { default = true, link = "LineNr" },
-    NvimTreeWinSeparator = { default = true, link = "VertSplit" },
+    NvimTreeWinSeparator = {
+      -- NOTE: Match bg of NvimTreeNormal
+      fg = config.transparent and "NONE" or ui.background.secondary,
+      bg = config.transparent and "NONE" or ui.background.secondary
+    },
+    NvimTreeVertSplit    = { link = "NvimTreeWinSeparator" },  -- deprecated?
     NvimTreeCursorColumn = { default = true, link = "CursorColumn" },
 
     -- There are also links for file highlight with git properties, linked to their Git equivalent.

@@ -35,7 +35,7 @@ function M.get(spec, config)
     MatchParen   = { fg = ui.element.primary, style = "bold" }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     ModeMsg      = { fg = ui.element.primary, style = "bold" }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- NOTE: This was commented out as there is an issue with seting this highlight group see issue #98
-    -- MsgArea         = { fg = spec.fg2 }, -- Area for messages and cmdline
+    -- MsgArea         = {}, -- Area for messages and cmdline
     -- MsgSeparator    = {}, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg      = { fg = palette.orange, style = "bold" }, -- |more-prompt|
     NonText      = { fg = ui.background.elevated }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
