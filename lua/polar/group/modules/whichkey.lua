@@ -7,13 +7,13 @@ function M.get(spec, config, opts)
   local ui = spec.ui
   -- stylua: ignore
   return {
-		WhichKey = { fg = ui.text.primary, style = "bold" },
-		WhichKeyGroup = { fg = ui.element.secondary },
-		WhichKeySeperator = { fg = ui.element.secondary },
-		WhichKeyDesc = { fg = ui.element.primary },
-		WhichKeyFloat = { bg = ui.background.secondary },
-    WhichKeyBorder = { fg = ui.background.accent },
-    WhichKeyValue     = { fg = palette.comment },
+    WhichKey          = { fg = ui.text.primary, style = "bold" },
+    WhichKeyGroup     = { fg = ui.element.secondary },
+    WhichKeySeperator = { fg = ui.element.secondary },
+    WhichKeyDesc      = { fg = ui.element.primary },
+    WhichKeyFloat     = { bg = ui.background.secondary },
+    WhichKeyBorder    = { link = "FloatBorder" },
+    WhichKeyValue     = { link = "Comment" },
   }
 end
 

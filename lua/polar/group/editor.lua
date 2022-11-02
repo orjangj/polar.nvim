@@ -42,7 +42,7 @@ function M.get(spec, config)
     Normal       = { fg = ui.text.primary, bg = transparent and "NONE" or ui.background.primary }, -- normal text
     NormalNC     = { fg = ui.text.primary, bg = transparent and "NONE" or ui.background.primary }, -- normal text in non-current windows
     NormalFloat  = { fg = ui.text.primary, bg = ui.background.primary }, -- Normal text in floating windows.
-    FloatBorder  = { fg = ui.background.elevated }, -- TODO
+    FloatBorder  = { fg = ui.background.accent },
     Pmenu        = { fg = ui.text.primary, bg = ui.background.secondary }, -- Popup menu: normal item.
     PmenuSel     = { bg = ui.background.accent }, -- Popup menu: selected item.
     PmenuSbar    = { link = "Pmenu" }, -- Popup menu: scrollbar.
