@@ -42,7 +42,7 @@ function M.get(spec, config, opts)
 
     -- There are also links to normal bindings to style the tree itself.
     NvimTreeNormal       = { fg = ui.text.primary, bg = config.transparent and "NONE" or ui.background.primary },
-    NvimTreeEndOfBuffer  = { default = true, link = "NonText" },
+    NvimTreeEndOfBuffer  = { fg = "NONE" }, -- { default = true, link = "NonText" },
     NvimTreeCursorLine   = { default = true, link = "CursorLine" },
     NvimTreeCursorLineNr = { default = true, link = "CursorLineNr" },
     NvimTreeLineNr       = { default = true, link = "LineNr" },
