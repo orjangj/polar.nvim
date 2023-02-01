@@ -3,6 +3,7 @@ local M = {}
 function M.get(spec, config)
   local palette = spec.palette
   local ui = spec.ui
+  local element = ui.element
   local syntax = spec.syntax
   local style = config.styles
 
@@ -53,6 +54,10 @@ function M.get(spec, config)
     Bold       = { style = "bold" },
     Italic     = { style = "italic" },
 
+    healthError = { fg = palette.red },
+    healthWarning = { fg = palette.yellow },
+    healthSuccess = { fg = palette.green },
+
     -- ("Ignore", below, may be invisible...)
     -- Ignore         = {}, -- (preferred) left blank, hidden  |hl-Ignore|
 
@@ -78,19 +83,52 @@ function M.get(spec, config)
     htmlH3              = { fg = palette.green, style = "bold" },
     htmlH4              = { fg = palette.magenta, style = "bold" },
     htmlH5              = { fg = palette.blue, style = "bold" },
-    markdownH1          = { fg = palette.cyan, style = "bold" },
-    markdownH2          = { fg = palette.red, style = "bold" },
-    markdownH3          = { fg = palette.green, style = "bold" },
-    markdownH1Delimiter = { fg = palette.cyan },
-    markdownH2Delimiter = { fg = palette.red },
-    markdownH3Delimiter = { fg = palette.green },
-    -- markdownHeadingDelimiter = {},
-    -- markdownCode             = {},
-    -- markdownCodeBlock        = {},
-    -- markdownH1               = {},
-    -- markdownH2               = {},
-    -- markdownLinkText         = {},
 
+    markdownH1          = { fg = element.primary, style = "bold" },
+    markdownH2          = { fg = element.secondary, style = "bold" },
+    markdownH3          = { fg = element.accent, style = "bold" },
+    markdownH1Delimiter = { fg = element.primary },
+    markdownH2Delimiter = { fg = element.secondary },
+    markdownH3Delimiter = { fg = element.accent },
+
+    -- headline.nvim
+    Headline1 = { fg = palette.cyan, bg = ui.background.secondary, style = "bold" },
+    Headline2 = { fg = palette.blue, bg = ui.background.secondary, style = "bold" },
+    Headline3 = { fg = palette.green, bg = ui.background.secondary, style = "bold" },
+    Headline4 = { fg = palette.yellow, bg = ui.background.secondary, style = "bold" },
+    Headline5 = { fg = palette.magenta, bg = ui.background.secondary, style = "bold" },
+    Headline6 = { fg = palette.white, bg = ui.background.secondary, style = "bold" },
+    Quote = { link = "Comment" },
+    CodeBlock = { bg = ui.background.secondary },
+    Dash = { palette.green, style = "bold" },
+
+    --markdownBlockquote = { fg = colors.light_gray },
+    --markdownBold = { fg = colors.purple, style = "bold" },
+    --markdownCode = { fg = colors.green },
+    --markdownCodeBlock = { fg = palette.green, bg = palette.green },
+    --markdownCodeDelimiter = { fg = colors.green },
+    --markdownH1 = { fg = colors.dark_blue, style = "bold" },
+    --markdownH2 = { fg = colors.blue, style = "bold" },
+    --markdownH3 = { fg = colors.cyan, style = "bold" },
+    --markdownH4 = { fg = colors.light_green },
+    --markdownH5 = { fg = colors.light_green },
+    --markdownH6 = { fg = colors.light_green },
+    --markdownH1Delimiter = { fg = colors.dark_blue },
+    --markdownH2Delimiter = { fg = colors.blue },
+    --markdownH3Delimiter = { fg = colors.cyan },
+    --markdownH4Delimiter = { fg = colors.light_green },
+    --markdownH5Delimiter = { fg = colors.light_green },
+    --markdownH6Delimiter = { fg = colors.light_green },
+    --markdownId = { fg = colors.yellow },
+    --markdownIdDeclaration = { fg = colors.purple },
+    --markdownIdDelimiter = { fg = colors.light_gray },
+    --markdownLinkDelimiter = { fg = colors.light_gray },
+    --markdownItalic = { fg = colors.yellow, style = "italic" },
+    --markdownLinkText = { fg = colors.purple },
+    --markdownListMarker = { fg = colors.red },
+    --markdownOrderedListMarker = { fg = colors.red },
+    --markdownRule = { fg = colors.purple },
+    --markdownUrl = { fg = colors.cyan, style = "underline" },
   }
 end
 

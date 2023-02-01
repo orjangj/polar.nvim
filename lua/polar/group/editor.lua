@@ -38,7 +38,7 @@ function M.get(spec, config)
     -- MsgArea         = {}, -- Area for messages and cmdline
     -- MsgSeparator    = {}, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg      = { fg = palette.orange, style = "bold" }, -- |more-prompt|
-    NonText      = { fg = ui.background.elevated }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    NonText      = { fg = ui.background.secondary }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal       = { fg = ui.text.primary, bg = transparent and "NONE" or ui.background.primary }, -- normal text
     NormalNC     = { fg = ui.text.primary, bg = transparent and "NONE" or ui.background.primary }, -- normal text in non-current windows
     NormalFloat  = { fg = ui.text.primary, bg = ui.background.primary }, -- Normal text in floating windows.
