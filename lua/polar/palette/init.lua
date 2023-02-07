@@ -30,6 +30,7 @@ M.green   = M.nord14
 M.yellow  = M.nord13
 M.blue    = M.nord9
 M.magenta = M.nord15
+M.teal    = M.nord7
 M.cyan    = M.nord8
 M.white   = M.nord4
 M.orange  = M.nord12
@@ -42,31 +43,6 @@ M.ui = {
 }
 
 M.diagnostic = { error = M.red, warning = M.yellow, info = M.magenta, hint = M.orange }
-
--- TODO: Probably not necessary... just modify lua/polar/groups/syntax.lua instead
-M.syntax = {
-  bracket     = M.white,
-  builtin0    = M.blue,    -- C++: this. Lua: function, require,
-  builtin1    = M.magenta, -- C++: namespace names
-  builtin2    = M.magenta, -- C++: NULL, Lua: nil
-  builtin3    = M.magenta,
-  comment     = M.comment,
-  conditional = M.blue,
-  const       = M.white,   -- TODO: another color? applies to enum values?
-  dep         = M.magenta,
-  field       = M.white,   -- struct/class/enum variables
-  func        = M.cyan,
-  ident       = M.white,   -- C++: function parameters
-  keyword     = M.blue,
-  number      = M.magenta,
-  operator    = M.blue,
-  preproc     = M.blue,
-  regex       = M.yellow,
-  statement   = M.magenta,
-  string      = M.green,
-  type        = M.nord7,   -- TODO
-  variable    = M.white,
-}
 
 -- TODO: Create a terminal.lua?
 M.terminal = {

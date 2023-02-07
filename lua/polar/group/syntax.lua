@@ -4,45 +4,44 @@ function M.get(spec, config)
   local palette = spec.palette
   local ui = spec.ui
   local element = ui.element
-  local syntax = spec.syntax
   local style = config.styles
 
   -- TODO: Add config style settings
   -- TODO: Go through list and align with Nord recommendations
   -- stylua: ignore
   return {
-    Comment = { fg = syntax.comment, style = style.comments }, -- any comment
+    Comment = { fg = palette.comment, style = style.comments }, -- any comment
 
-    Constant  = { fg = syntax.const, style = style.constants }, -- (preferred) any constant
-    String    = { fg = syntax.string, style = style.strings }, -- a string constant: "this is a string"
+    Constant  = { fg = palette.white, style = style.constants }, -- (preferred) any constant
+    String    = { fg = palette.green, style = style.strings }, -- a string constant: "this is a string"
     Character = { link = "String" }, -- a character constant: 'c', '\n'
-    Number    = { fg = syntax.number, style = style.numbers }, -- a number constant: 234, 0xff
+    Number    = { fg = palette.magenta, style = style.numbers }, -- a number constant: 234, 0xff
     Float     = { link = "Number" }, -- a floating point constant: 2.3e10
     Boolean   = { link = "Number" }, -- a boolean constant: TRUE, false
 
-    Identifier = { fg = syntax.ident, style = style.variables }, -- (preferred) any variable name
-    Function   = { fg = syntax.func, style = style.functions }, -- function name (also: methods for classes)
+    Identifier = { fg = palette.white, style = style.variables }, -- (preferred) any variable name
+    Function   = { fg = palette.cyan, style = style.functions }, -- function name (also: methods for classes)
 
-    Statement   = { fg = syntax.keyword, style = style.keywords }, -- (preferred) any statement
-    Conditional = { fg = syntax.conditional, style = style.conditionals }, -- if, then, else, endif, switch, etc.
+    Statement   = { fg = palette.blue, style = style.keywords }, -- (preferred) any statement
+    Conditional = { fg = palette.blue, style = style.conditionals }, -- if, then, else, endif, switch, etc.
     Repeat      = { link = "Conditional" }, -- for, do, while, etc.
     Label       = { link = "Conditional" }, -- case, default, etc.
-    Operator    = { fg = syntax.operator, style = style.operators }, -- "sizeof", "+", "*", etc.
-    Keyword     = { fg = syntax.keyword, style = style.keywords }, -- any other keyword
+    Operator    = { fg = palette.blue, style = style.operators }, -- "sizeof", "+", "*", etc.
+    Keyword     = { fg = palette.blue, style = style.keywords }, -- any other keyword
     Exception   = { link = "Keyword" }, -- try, catch, throw
 
-    PreProc   = { fg = syntax.preproc }, -- (preferred) generic Preprocessor
+    PreProc   = { fg = palette.blue }, -- (preferred) generic Preprocessor
     Include   = { link = "PreProc" }, -- preprocessor #include
     Define    = { link = "PreProc" }, -- preprocessor #define
     Macro     = { link = "PreProc" }, -- same as Define
     PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
 
-    Type         = { fg = syntax.type, style = style.types }, -- (preferred) int, long, char, etc.
+    Type         = { fg = palette.cyan, style = style.types }, -- (preferred) int, long, char, etc.
     StorageClass = { link = "Type" }, -- static, register, volatile, etc.
     Structure    = { link = "Type" }, -- struct, union, enum, etc.
     Typedef      = { link = "Type" }, -- A typedef
 
-    Special        = { fg = syntax.func }, -- (preferred) any special symbol
+    Special        = { fg = palette.cyan }, -- (preferred) any special symbol
     SpecialChar    = { link = "Special" }, -- special character in a constant
     Tag            = { link = "Special" }, -- you can use CTRL-] on this
     Delimiter      = { link = "Special" }, -- character that needs attention
