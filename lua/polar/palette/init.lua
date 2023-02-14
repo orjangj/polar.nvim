@@ -21,6 +21,7 @@ M.nord14  = "#a3be8c" -- UI: Success states, linter markers, git diff. | Syntax:
 M.nord15  = "#b48ead" -- UI: Rarely used.                              | Syntax: Numbers of any type.
 
 M.comment = shade.lighten(M.nord3, 10)
+M.codeblock = shade.darken(M.nord0, 2)
 
 -- TODO: encapsulate in M.color = { }?
 -- TODO: create base, dim and light color versions using shade.darken() and shade.lighten() ?

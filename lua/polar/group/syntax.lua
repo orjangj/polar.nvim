@@ -98,7 +98,7 @@ function M.get(spec, config)
     Headline5 = { fg = palette.magenta, bg = ui.background.secondary, style = "bold" },
     Headline6 = { fg = palette.white, bg = ui.background.secondary, style = "bold" },
     Quote = { link = "Comment" },
-    CodeBlock = { bg = ui.background.secondary },
+    CodeBlock = { bg = palette.codeblock },
     Dash = { palette.green, style = "bold" },
 
     --markdownBlockquote = { fg = colors.light_gray },
