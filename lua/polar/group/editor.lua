@@ -16,10 +16,10 @@ function M.get(spec, config)
     CursorColumn = { link = "CursorLine" }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine   = { bg = ui.background.secondary }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    = { fg = ui.element.secondary }, -- directory names (and other special names in listings)
-    DiffAdd      = { fg = palette.green }, -- diff mode: Added line |diff.txt|
-    DiffChange   = { fg = palette.yellow }, -- diff mode: Changed line |diff.txt|
-    DiffDelete   = { fg = palette.red }, -- diff mode: Deleted line |diff.txt|
-    DiffText     = { fg = palette.yellow }, -- diff mode: Changed text within a changed line |diff.txt|
+    DiffAdd      = { bg = palette.diff.add, style = "bold" }, -- diff mode: Added line |diff.txt|
+    DiffChange   = { bg = palette.diff.change, style = "bold" }, -- diff mode: Changed line |diff.txt|
+    DiffDelete   = { bg = palette.diff.delete, style = "bold" }, -- diff mode: Deleted line |diff.txt|
+    DiffText     = { bg = palette.diff.text, style = "bold" }, -- diff mode: Changed text within a changed line |diff.txt|
     EndOfBuffer  = { fg = ui.background.primary }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     -- TermCursor      = {}, -- cursor in a focused terminal
     -- TermCursorNC    = {}, -- cursor in an unfocused terminal
