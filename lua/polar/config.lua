@@ -19,6 +19,7 @@ local defaults = {
     cmp = true,
     diagnostic = true,
     gitsigns = true,
+    headlines = true,
     neotest = true,
     notify = true,
     nvimtree = true,
