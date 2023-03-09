@@ -40,12 +40,11 @@ local function rgb2hsl(r, g, b)
     s = delta / (1 - math.abs(2 * l - 1))
   end
 
-  return h * 60, s * 100, l * 100
+  return h * 60 < 0 and h * 60 + 360 or h * 60, s, l
 end
 
 local function hsl2rgb(h, s, l)
-  l = l / 100
-  local a = s * math.min(l, 1 - l) / 100
+  local a = s * math.min(l, 1 - l)
 
   local function f(n)
     local k = (n + h / 30) % 12
@@ -130,9 +129,9 @@ end
 -- @brief Increases the lightness of the color by a percentage
 -- @param css string CSS color
 -- @param alpha number number between 0 and 1 (0 = css, 1 = white)
-function M.lighten(css, percentage)
+function M.lighten(css, alpha)
   local h, s, l = rgb2hsl(css2rgb(css))
-  return rgb2css(hsl2rgb(h, s, l + percentage))
+  return rgb2css(hsl2rgb(h, s, l + alpha))
 end
 
 -- @brief Makes the color darker by adjusting the brightness
@@ -140,7 +139,7 @@ end
 -- @param alpha number number between 0 and 1 (0 = css, 1 = black)
 function M.darken(css, alpha)
   local h, s, v = rgb2hsv(css2rgb(css))
-  return rgb2css(hsv2rgb(h, s, v - alpha ))
+  return rgb2css(hsv2rgb(h, s, v - alpha))
 end
 
 -- @brief Blends foreground and background colors

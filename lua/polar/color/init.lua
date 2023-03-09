@@ -42,7 +42,7 @@ M.cursorline = nord2
 M.conceal    = nord3
 M.cursor     = M.blue
 M.cursorline = nord1
-M.codeblock  = shade.darken(M.background.normal, 0.05)
+M.codeblock  = shade.darken(M.background.normal, 0.03)
 M.directory  = { normal = M.cyan, accent = M.blue }
 M.filename   = M.white
 M.foreground = { normal = nord8, accent = nord7, focus = nord9, elevated = nord10 }
@@ -50,7 +50,7 @@ M.text       = { normal = nord4, accent = nord5, focus = nord6 }
 
 -- Syntax
 M.conditionals  = M.blue
-M.comments      = shade.lighten(nord3, 10)
+M.comments      = shade.lighten(nord3, 0.10)
 M.keywords      = M.blue
 M.constants     = M.white
 M.strings       = M.green    -- string, character
