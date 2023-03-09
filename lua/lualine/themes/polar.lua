@@ -1,43 +1,42 @@
 local spec = require("polar.spec")
-local palette = spec.palette
-local ui = spec.ui
+local color = spec.color
 
 local polar = {}
 
 polar.normal = {
-	a = { fg = ui.text.primary, bg = ui.background.secondary },
-	b = { fg = ui.text.primary, bg = ui.background.secondary },
-	c = { fg = ui.text.primary, bg = ui.background.primary },
+	a = { fg = color.text.normal, bg = color.background.accent },
+	b = { fg = color.text.normal, bg = color.background.accent },
+	c = { fg = color.text.normal, bg = color.background.normal },
 }
 
 polar.insert = {
-	a = { fg = ui.background.primary, bg = ui.element.primary },
-	b = { fg = ui.text.primary, bg = ui.background.secondary },
-	y = { fg = ui.text.primary, bg = ui.background.primary },
+	a = { fg = color.background.normal, bg = color.foreground.normal },
+	b = { fg = color.background.normal, bg = color.foreground.normal },
+	y = { fg = color.text.normal, bg = color.background.normal },
 }
 
 polar.visual = {
-	a = { fg = ui.background.primary, bg = ui.element.accent },
-	b = { fg = ui.text.primary, bg = ui.background.secondary },
-	y = { fg = ui.text.primary, bg = ui.background.primary },
+	a = { fg = color.background.normal, bg = color.foreground.focus },
+	b = { fg = color.background.normal, bg = color.foreground.focus },
+	y = { fg = color.text.normal, bg = color.background.normal },
 }
 
 polar.command = {
-	a = { fg = ui.background.primary, bg = palette.yellow, gui = "bold" },
-	b = { fg = ui.text.primary, bg = ui.background.secondary },
-	y = { fg = ui.text.primary, bg = ui.background.primary },
+	a = { fg = color.background.normal, bg = color.foreground.accent },
+	b = { fg = color.background.normal, bg = color.foreground.accent },
+	y = { fg = color.text.normal, bg = color.background.normal },
 }
 
 polar.replace = {
-	a = { fg = ui.background.primary, bg = palette.magenta },
-	b = { fg = ui.text.primary, bg = ui.background.secondary },
-	y = { fg = ui.text.primary, bg = ui.background.primary },
+	a = { fg = color.background.normal, bg = color.foreground.elevated },
+	b = { fg = color.background.normal, bg = color.foreground.elevated },
+	y = { fg = color.text.normal, bg = color.background.normal },
 }
 
 polar.inactive = {
-	a = { fg = ui.text.primary, bg = ui.background.secondary, gui = "bold" },
-	b = { fg = ui.text.primary, bg = ui.background.secondary },
-	c = { fg = ui.text.primary, bg = ui.background.primary },
+	a = { fg = color.text.normal, bg = color.background.accent, gui = "bold" },
+	b = { fg = color.text.normal, bg = color.background.accent },
+	c = { fg = color.text.normal, bg = color.background.normal },
 }
 
 return polar

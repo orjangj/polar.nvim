@@ -1,25 +1,25 @@
 local M = {}
 
 function M.get(spec, config, opts)
-  local palette = spec.palette
-  local ui = spec.ui
+  local color = spec.color
+
   -- stylua: ignore
   return {
-    NotifyDEBUGBorder = { fg = ui.background.elevated },
-    NotifyDEBUGIcon   = { fg = ui.background.elevated },
-    NotifyDEBUGTitle  = { fg = ui.background.elevated },
-    NotifyERRORBorder = { fg = palette.red },
-    NotifyERRORIcon   = { fg = palette.red },
-    NotifyERRORTitle  = { fg = palette.red },
-    NotifyINFOBorder  = { fg = palette.green },
-    NotifyINFOIcon    = { fg = palette.green },
-    NotifyINFOTitle   = { fg = palette.green },
-    NotifyTRACEBorder = { fg = palette.magenta },
-    NotifyTRACEIcon   = { fg = palette.magenta },
-    NotifyTRACETitle  = { fg = palette.magenta },
-    NotifyWARNBorder  = { fg = palette.yellow },
-    NotifyWARNIcon    = { fg = palette.yellow },
-    NotifyWARNTitle   = { fg = palette.yellow },
+    NotifyERRORBorder = { fg = color.border.focus },
+    NotifyERRORIcon   = { fg = color.red },
+    NotifyERRORTitle  = { fg = color.red },
+    NotifyWARNBorder  = { fg = color.border.focus },
+    NotifyWARNIcon    = { fg = color.yellow },
+    NotifyWARNTitle   = { fg = color.yellow },
+    NotifyINFOBorder  = { fg = color.border.accent },
+    NotifyINFOIcon    = { fg = color.green },
+    NotifyINFOTitle   = { fg = color.green },
+    NotifyDEBUGBorder = { fg = color.border.normal },
+    NotifyDEBUGIcon   = { fg = color.white },
+    NotifyDEBUGTitle  = { fg = color.white },
+    NotifyTRACEBorder = { fg = color.border.normal },
+    NotifyTRACEIcon   = { fg = color.white },
+    NotifyTRACETitle  = { fg = color.white },
   }
 end
 

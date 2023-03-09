@@ -1,123 +1,85 @@
 local M = {}
 
 function M.get(spec, config)
-  local palette = spec.palette
-  local ui = spec.ui
-  local element = ui.element
+  local color = spec.color
   local style = config.styles
 
-  -- TODO: Add config style settings
-  -- TODO: Go through list and align with Nord recommendations
   -- stylua: ignore
   return {
-    Comment = { fg = palette.comment, style = style.comments }, -- any comment
-
-    Constant  = { fg = palette.white, style = style.constants }, -- (preferred) any constant
-    String    = { fg = palette.green, style = style.strings }, -- a string constant: "this is a string"
-    Character = { link = "String" }, -- a character constant: 'c', '\n'
-    Number    = { fg = palette.magenta, style = style.numbers }, -- a number constant: 234, 0xff
-    Float     = { link = "Number" }, -- a floating point constant: 2.3e10
-    Boolean   = { link = "Number" }, -- a boolean constant: TRUE, false
-
-    Identifier = { fg = palette.white, style = style.variables }, -- (preferred) any variable name
-    Function   = { fg = palette.cyan, style = style.functions }, -- function name (also: methods for classes)
-
-    Statement   = { fg = palette.blue, style = style.keywords }, -- (preferred) any statement
-    Conditional = { fg = palette.blue, style = style.conditionals }, -- if, then, else, endif, switch, etc.
-    Repeat      = { link = "Conditional" }, -- for, do, while, etc.
-    Label       = { link = "Conditional" }, -- case, default, etc.
-    Operator    = { fg = palette.blue, style = style.operators }, -- "sizeof", "+", "*", etc.
-    Keyword     = { fg = palette.blue, style = style.keywords }, -- any other keyword
-    Exception   = { link = "Keyword" }, -- try, catch, throw
-
-    PreProc   = { fg = palette.blue }, -- (preferred) generic Preprocessor
-    Include   = { link = "PreProc" }, -- preprocessor #include
-    Define    = { link = "PreProc" }, -- preprocessor #define
-    Macro     = { link = "PreProc" }, -- same as Define
-    PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
-
-    Type         = { fg = palette.cyan, style = style.types }, -- (preferred) int, long, char, etc.
-    StorageClass = { link = "Type" }, -- static, register, volatile, etc.
-    Structure    = { link = "Type" }, -- struct, union, enum, etc.
-    Typedef      = { link = "Type" }, -- A typedef
-
-    Special        = { fg = palette.cyan }, -- (preferred) any special symbol
+    Comment        = { fg = color.comments, style = style.comments }, -- any comment
+    Constant       = { fg = color.constants, style = style.constants }, -- (preferred) any constant
+    String         = { fg = color.strings, style = style.strings }, -- a string constant: "this is a string"
+    Character      = { link = "String" }, -- a character constant: 'c', '\n'
+    Number         = { fg = color.numbers, style = style.numbers }, -- a number constant: 234, 0xff
+    Boolean        = { link = "Number" }, -- a boolean constant: TRUE, false
+    Float          = { link = "Number" }, -- a floating point constant: 2.3e10
+    Identifier     = { fg = color.variables, style = style.variables }, -- (preferred) any variable name
+    Function       = { fg = color.functions, style = style.functions }, -- function name (also: methods for classes)
+    Statement      = { fg = color.keywords, style = style.keywords }, -- (preferred) any statement
+    Conditional    = { fg = color.conditionals, style = style.conditionals }, -- if, then, else, endif, switch, etc.
+    Repeat         = { link = "Conditional" }, -- for, do, while, etc.
+    Label          = { link = "Conditional" }, -- case, default, etc.
+    Operator       = { fg = color.operators, style = style.operators }, -- "sizeof", "+", "*", etc.
+    Keyword        = { link = "Operator" }, -- any other keyword
+    Exception      = { link = "Operator" }, -- try, catch, throw
+    PreProc        = { fg = color.preprocs }, -- (preferred) generic Preprocessor
+    Include        = { link = "PreProc" }, -- preprocessor #include
+    Define         = { link = "PreProc" }, -- preprocessor #define
+    Macro          = { link = "PreProc" }, -- same as Define
+    PreCondit      = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
+    Type           = { fg = color.types, style = style.types }, -- (preferred) int, long, char, etc.
+    StorageClass   = { link = "Type" }, -- static, register, volatile, etc.
+    Structure      = { link = "Type" }, -- struct, union, enum, etc.
+    Typedef        = { link = "Type" }, -- A typedef
+    Special        = { fg = color.special }, -- (preferred) any special symbol
     SpecialChar    = { link = "Special" }, -- special character in a constant
     Tag            = { link = "Special" }, -- you can use CTRL-] on this
     Delimiter      = { link = "Special" }, -- character that needs attention
     SpecialComment = { link = "Special" }, -- special things inside a comment
     Debug          = { link = "Special" }, -- debugging statements
-
-    Conceal    = { fg = "NONE", bg = ui.background.primary },
-    Underlined = { style = "underline" }, -- (preferred) text that stands out, HTML links
-    Bold       = { style = "bold" },
-    Italic     = { style = "italic" },
-
-    healthError = { fg = palette.red },
-    healthWarning = { fg = palette.yellow },
-    healthSuccess = { fg = palette.green },
-
-    -- ("Ignore", below, may be invisible...)
+    Conceal        = { fg = color.none, bg = color.background.normal },
+    Underlined     = { style = "underline" }, -- (preferred) text that stands out, HTML links
+    Bold           = { style = "bold" },
+    Italic         = { style = "italic" },
+    healthError    = { fg = color.diagnostic.error },
+    healthWarning  = { fg = color.diagnostic.warning },
+    healthSuccess  = { fg = color.diagnostic.success },
     -- Ignore         = {}, -- (preferred) left blank, hidden  |hl-Ignore|
-
-    Error = { fg = palette.red }, -- (preferred) any erroneous construct
-    Todo  = { fg = palette.cyan, bg = ui.background.primary }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-
-    qfLineNr   = { link = "lineNr" },
-    qfFileName = { link = "Directory" },
-
-    -- Diff filetype (runtime/syntax/diff.vim)
-    diffAdded     = { fg = palette.green }, -- Added lines ("^+.*" | "^>.*")
-    diffRemoved   = { fg = palette.red }, -- Removed lines ("^-.*" | "^<.*")
-    diffChanged   = { fg = palette.yellow }, -- Changed lines ("^! .*")
-    diffOldFile   = { fg = palette.red, style = "bold" }, -- Old file that is being diff against
-    diffNewFile   = { fg = palette.green, style = "bold" }, -- New file that is being compared to the old file
-    diffFile      = { fg = palette.white, style = "bold" }, -- The filename of the diff ("diff --git a/readme.md b/readme.md")
-    diffLine      = { fg = palette.white, style = "bold" }, -- Line information ("@@ -169,6 +169,9 @@")
-    diffIndexLine = { fg = palette.white, style = "bold" }, -- Index line of diff ("index bf3763d..94f0f62 100644")
-
-    htmlLink            = { fg = palette.green, style = "underline" },
-    htmlH1              = { fg = palette.cyan, style = "bold" },
-    htmlH2              = { fg = palette.red, style = "bold" },
-    htmlH3              = { fg = palette.green, style = "bold" },
-    htmlH4              = { fg = palette.magenta, style = "bold" },
-    htmlH5              = { fg = palette.blue, style = "bold" },
-
-    markdownH1          = { fg = element.primary, style = "bold" },
-    markdownH2          = { fg = element.secondary, style = "bold" },
-    markdownH3          = { fg = element.accent, style = "bold" },
-    markdownH1Delimiter = { fg = element.primary },
-    markdownH2Delimiter = { fg = element.secondary },
-    markdownH3Delimiter = { fg = element.accent },
-
-    -- headline.nvim
-    Headline1 = { fg = palette.cyan, bg = ui.background.secondary, style = "bold" },
-    Headline2 = { fg = palette.blue, bg = ui.background.secondary, style = "bold" },
-    Headline3 = { fg = palette.green, bg = ui.background.secondary, style = "bold" },
-    Headline4 = { fg = palette.yellow, bg = ui.background.secondary, style = "bold" },
-    Headline5 = { fg = palette.magenta, bg = ui.background.secondary, style = "bold" },
-    Headline6 = { fg = palette.white, bg = ui.background.secondary, style = "bold" },
-    Quote = { link = "Comment" },
-    CodeBlock = { bg = palette.codeblock },
-    Dash = { palette.green, style = "bold" },
-
+    Error          = { fg = color.diagnostic.error }, -- (preferred) any erroneous construct
+    Todo           = { fg = color.cyan, bg = color.background.normal }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    qfLineNr       = { link = "lineNr" },
+    qfFileName     = { link = "Directory" },
+    diffAdded      = { fg = color.green }, -- Added lines ("^+.*" | "^>.*")
+    diffRemoved    = { fg = color.red }, -- Removed lines ("^-.*" | "^<.*")
+    diffChanged    = { fg = color.yellow }, -- Changed lines ("^! .*")
+    diffOldFile    = { fg = color.red, style = "bold" }, -- Old file that is being diff against
+    diffNewFile    = { fg = color.green, style = "bold" }, -- New file that is being compared to the old file
+    diffFile       = { fg = color.white, style = "bold" }, -- The filename of the diff ("diff --git a/readme.md b/readme.md")
+    diffLine       = { fg = color.white, style = "bold" }, -- Line information ("@@ -169,6 +169,9 @@")
+    diffIndexLine  = { fg = color.white, style = "bold" }, -- Index line of diff ("index bf3763d..94f0f62 100644")
+    htmlLink       = { fg = color.green, style = "underline" },
+    htmlH1         = { fg = color.cyan, style = "bold" },
+    htmlH2         = { fg = color.teal, style = "bold" },
+    htmlH3         = { fg = color.blue, style = "bold" },
+    htmlH4         = { fg = color.magenta, style = "bold" },
+    htmlH5         = { fg = color.green, style = "bold" },
+    markdownH1     = { fg = color.cyan, style = "bold" },
+    markdownH2     = { fg = color.teal, style = "bold" },
+    markdownH3     = { fg = color.blue, style = "bold" },
+    markdownH4     = { fg = color.magenta, style = "bold" },
+    markdownH5     = { fg = color.green, style = "bold" },
+    markdownH6     = { fg = color.white, style = "bold" },
+    markdownH1Delimiter = { link = "markdownH1" },
+    markdownH2Delimiter = { link = "markdownH2" },
+    markdownH3Delimiter = { link = "markdownH3" },
+    markdownH4Delimiter = { link = "markdownH4" },
+    markdownH5Delimiter = { link = "markdownH5" },
+    markdownH6Delimiter = { link = "markdownH6" },
     --markdownBlockquote = { fg = colors.light_gray },
     --markdownBold = { fg = colors.purple, style = "bold" },
     --markdownCode = { fg = colors.green },
     --markdownCodeBlock = { fg = palette.green, bg = palette.green },
     --markdownCodeDelimiter = { fg = colors.green },
-    --markdownH1 = { fg = colors.dark_blue, style = "bold" },
-    --markdownH2 = { fg = colors.blue, style = "bold" },
-    --markdownH3 = { fg = colors.cyan, style = "bold" },
-    --markdownH4 = { fg = colors.light_green },
-    --markdownH5 = { fg = colors.light_green },
-    --markdownH6 = { fg = colors.light_green },
-    --markdownH1Delimiter = { fg = colors.dark_blue },
-    --markdownH2Delimiter = { fg = colors.blue },
-    --markdownH3Delimiter = { fg = colors.cyan },
-    --markdownH4Delimiter = { fg = colors.light_green },
-    --markdownH5Delimiter = { fg = colors.light_green },
-    --markdownH6Delimiter = { fg = colors.light_green },
     --markdownId = { fg = colors.yellow },
     --markdownIdDeclaration = { fg = colors.purple },
     --markdownIdDelimiter = { fg = colors.light_gray },

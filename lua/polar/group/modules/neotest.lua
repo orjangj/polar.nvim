@@ -4,23 +4,23 @@
 local M = {}
 
 function M.get(spec, config, opts)
-  local palette = spec.palette
-  local ui = spec.ui
+  local color = spec.color
+
   -- stylua: ignore
   return {
-    NeotestPassed       = { fg = palette.green },
-    NeotestFailed       = { fg = palette.red },
-    NeotestRunning      = { fg = palette.orange },
-    NeotestSkipped      = { fg = palette.yellow },
-    NeotestTest         = { fg = ui.text.primary },
-    NeotestNamespace    = { fg = ui.element.elevated },
-    NeotestMarked       = { fg = ui.text.accent, style = 'bold' },
-    NeotestFocused      = { fg = ui.text.primary, style = 'underline' },
-    NeotestFile         = { fg = ui.element.accent },
-    NeotestDir          = { fg = ui.element.secondary},
-    NeotestIndent       = { link = 'Conceal'},
-    NeotestExpandMarker = { link = 'Conceal'},
-    NeotestAdapterName  = { fg = ui.element.primary, style = 'bold'},
+    NeotestPassed       = { fg = color.diagnostic.success },
+    NeotestFailed       = { fg = color.diagnostic.error },
+    NeotestRunning      = { fg = color.diagnostic.info },
+    NeotestSkipped      = { fg = color.diagnostic.hint },
+    NeotestTest         = { fg = color.text.normal },
+    NeotestNamespace    = { fg = color.types },
+    NeotestMarked       = { fg = color.text.normal, style = 'bold' },
+    NeotestFocused      = { fg = color.text.normal, style = 'underline' },
+    NeotestFile         = { fg = color.filename },
+    NeotestDir          = { link = "Directory" },
+    NeotestIndent       = { link = "Conceal" },
+    NeotestExpandMarker = { link = "Conceal" },
+    NeotestAdapterName  = { fg = color.foreground.normal, style = 'bold'},
   }
 end
 

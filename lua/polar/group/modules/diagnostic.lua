@@ -2,25 +2,26 @@
 local M = {}
 
 function M.get(spec, config, opts)
-  local palette = spec.palette
+  local color = spec.color
+
   -- stylua: ignore
   return {
-    DiagnosticError            = { fg = palette.red },
-    DiagnosticWarn             = { fg = palette.yellow },
-    DiagnosticInfo             = { fg = palette.orange },
-    DiagnosticHint             = { fg = palette.magenta },
+    DiagnosticError            = { fg = color.diagnostic.error },
+    DiagnosticWarn             = { fg = color.diagnostic.warning },
+    DiagnosticInfo             = { fg = color.diagnostic.info },
+    DiagnosticHint             = { fg = color.diagnostic.hint },
     DiagnosticSignError        = { link = "DiagnosticError" },
     DiagnosticSignWarn         = { link = "DiagnosticWarn" },
     DiagnosticSignInfo         = { link = "DiagnosticInfo" },
     DiagnosticSignHint         = { link = "DiagnosticHint" },
-    DiagnosticVirtualTextError = { fg = palette.red, bg = "NONE" },
-    DiagnosticVirtualTextWarn  = { fg = palette.yellow, bg = "NONE" },
-    DiagnosticVirtualTextInfo  = { fg = palette.orange, bg = "NONE" },
-    DiagnosticVirtualTextHint  = { fg = palette.magenta, bg = "NONE" },
-    DiagnosticUnderlineError   = { style = "undercurl", sp = palette.red },
-    DiagnosticUnderlineWarn    = { style = "undercurl", sp = palette.yellow },
-    DiagnosticUnderlineInfo    = { style = "undercurl", sp = palette.orange },
-    DiagnosticUnderlineHint    = { style = "undercurl", sp = palette.magenta },
+    DiagnosticVirtualTextError = { fg = color.diagnostic.error, bg = color.none },
+    DiagnosticVirtualTextWarn  = { fg = color.diagnostic.warning, bg = color.none },
+    DiagnosticVirtualTextInfo  = { fg = color.diagnostic.info, bg = color.none },
+    DiagnosticVirtualTextHint  = { fg = color.diagnostic.hint, bg = color.none },
+    DiagnosticUnderlineError   = { style = "undercurl", sp = color.diagnostic.error },
+    DiagnosticUnderlineWarn    = { style = "undercurl", sp = color.diagnostic.warning },
+    DiagnosticUnderlineInfo    = { style = "undercurl", sp = color.diagnostic.info },
+    DiagnosticUnderlineHint    = { style = "undercurl", sp = color.diagnostic.hint },
   }
 end
 

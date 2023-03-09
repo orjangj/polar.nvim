@@ -3,15 +3,15 @@
 local M = {}
 
 function M.get(spec, config, opts)
-  local palette = spec.palette
-  local ui = spec.ui
+  local color = spec.color
+
   -- stylua: ignore
   return {
-    WhichKey          = { fg = ui.text.primary, style = "bold" },
-    WhichKeyGroup     = { fg = ui.element.secondary },
-    WhichKeySeperator = { fg = ui.element.secondary },
-    WhichKeyDesc      = { fg = ui.element.primary },
-    WhichKeyFloat     = { bg = ui.background.secondary },
+    WhichKey          = { fg = color.text.normal, style = "bold" },
+    WhichKeyGroup     = { fg = color.foreground.focus },
+    WhichKeySeperator = { fg = color.foreground.focus },
+    WhichKeyDesc      = { fg = color.foreground.normal },
+    WhichKeyFloat     = { bg = color.border.normal },
     WhichKeyBorder    = { link = "FloatBorder" },
     WhichKeyValue     = { link = "Comment" },
   }

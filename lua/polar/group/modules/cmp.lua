@@ -3,20 +3,19 @@
 local M = {}
 
 function M.get(spec, config, opts)
-  local palette = spec.palette
-  local ui = spec.ui
+  local color = spec.color
   -- stylua: ignore
   return {
-    CmpItemKind              = { fg = palette.magenta },
-    CmpDocumentation         = { fg = ui.text.primary, bg = ui.background.primary },
-    CmpDocumentationBorder   = { fg = ui.background.accent, bg = ui.background.primary },
-    CmpItemAbbr              = { fg = ui.text.primary, },
-    CmpItemAbbrDeprecated    = { fg = ui.background.elevated, style = "strikethrough" },
-    CmpItemAbbrMatch         = { fg = ui.element.primary },
-    CmpItemAbbrMatchFuzzy    = { fg = ui.element.primary },
-    CmpItemMenu              = { fg = ui.element.primary },
+    CmpItemKind              = { fg = color.magenta }, -- TODO
+    CmpDocumentation         = { fg = color.text.normal, bg = color.background.normal },
+    CmpDocumentationBorder   = { fg = color.background.accent, bg = color.background.normal },
+    CmpItemAbbr              = { fg = color.text.normal },
+    CmpItemAbbrDeprecated    = { fg = color.background.normal, style = "strikethrough" },
+    CmpItemAbbrMatch         = { fg = color.foreground.normal },
+    CmpItemAbbrMatchFuzzy    = { fg = color.foreground.normal },
+    CmpItemMenu              = { fg = color.foreground.normal },
 
-    CmpItemKindDefault       = { fg = ui.text.primary },
+    CmpItemKindDefault       = { fg = color.text.normal },
     CmpItemKindKeyword       = { link = "Identifier" },
     CmpItemKindVariable      = { link = "TSVariable" },
     CmpItemKindConstant      = { link = "TSConstant" },
@@ -37,7 +36,7 @@ function M.get(spec, config, opts)
     CmpItemKindTypeParameter = { link = "TSField" },
     CmpItemKindEnumMember    = { link = "TSField" },
     CmpItemKindOperator      = { link = "Operator" },
-    CmpItemKindSnippet       = { fg = ui.text.primary },
+    CmpItemKindSnippet       = { fg = color.text.normal },
   }
 end
 

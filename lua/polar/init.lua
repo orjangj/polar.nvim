@@ -14,6 +14,7 @@ function M.load()
   if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
   end
+
   -- vim.o.background = "dark"
   vim.o.termguicolors = true
   vim.g.colors_name = "polar"
@@ -21,7 +22,7 @@ function M.load()
   require("polar.lib.highlight").highlight(groups)
 
   -- Set terminal colors
-  for i, value in ipairs(spec.palette.terminal) do
+  for i, value in ipairs(spec.color.terminal) do
     local n = "terminal_color_" .. i - 1
     vim.g[n] = value
   end
