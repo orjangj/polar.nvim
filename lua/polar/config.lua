@@ -3,29 +3,20 @@ local collect = require("polar.lib.collect")
 local M = {}
 
 local defaults = {
+  theme = "nord",
   styles = {
-    comments = "NONE",
-    conditionals = "NONE",
-    constants = "NONE",
-    functions = "NONE",
-    keywords = "NONE",
-    numbers = "NONE",
-    operators = "NONE",
-    strings = "NONE",
-    types = "NONE",
-    variables = "NONE"
-  },
-  modules = {
-    cmp = true,
-    diagnostic = true,
-    gitsigns = true,
-    headlines = true,
-    neotest = true,
-    notify = true,
-    nvimtree = true,
-    telescope = true,
-    treesitter = true,
-    whichkey = true
+    -- Style to be applied to different syntax groups
+    -- Value is any valid attr-list value for `:help nvim_set_hl`
+    comments = {},
+    conditionals = {},
+    constants = {},
+    functions = {},
+    keywords = {},
+    numbers = {},
+    operators = {},
+    strings = {},
+    types = {},
+    variables = {},
   },
 }
 

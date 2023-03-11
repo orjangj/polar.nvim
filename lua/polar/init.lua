@@ -4,7 +4,6 @@ function M.init(opts)
   require("polar.config").set_options(opts)
 end
 
--- TODO: How to set user options
 function M.load()
   local spec = require("polar.spec")
   local groups = require("polar.group").load(spec)
