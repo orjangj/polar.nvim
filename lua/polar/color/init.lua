@@ -38,10 +38,9 @@ M.orange  = nord12
 M.none       = "NONE"
 M.background = { normal = nord0, accent = nord1, focus = nord2 }
 M.border     = { normal = nord1, accent = nord2, focus = nord3 }
-M.cursorline = nord2
+M.cursorline = nord1
 M.conceal    = nord3
 M.cursor     = M.blue
-M.cursorline = nord1
 M.codeblock  = shade.darken(M.background.normal, 0.03)
 M.directory  = { normal = M.cyan, accent = M.blue }
 M.filename   = M.white

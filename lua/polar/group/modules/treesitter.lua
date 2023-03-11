@@ -32,6 +32,7 @@ function M.get(spec, config, opts)
     ["@property"]         = { default = true, link = "Identifier" }, -- Same as `@field`.
     ["@variable"]         = { default = true, link = "Identifier" }, -- Variable names that don't fit into other categories.
     ["@variable.builtin"] = { link = "Special" },                    -- Variable names defined by the language: `this` or `self` in Javascript.
+    ["@macro"]            = { link = "Macro" },
     -- }}}
     --Keywords {{{
     ["@conditional"]      = { default = true, link = "Conditional" }, -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
@@ -48,7 +49,7 @@ function M.get(spec, config, opts)
     ["punctuation"]             = { default = true, link = "Delimiter" },
     ["@punctuation.delimiter"]  = { fg = color.white }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
     ["@punctuation.bracket"]    = { fg = color.white }, -- Brackets, braces, parentheses, etc.
-    ["@punctuation.special"]    = { fg = color.white }, -- Special punctuation that doesn't fit into the previous categories.
+    ["@punctuation.special"]    = { link = "Special" }, -- Special punctuation that doesn't fit into the previous categories.
     -- }}}
     -- Text {{{
     ["@text"]                   = { fg = color.text.normal }, -- Non-structured text. Like text in a markup language.
