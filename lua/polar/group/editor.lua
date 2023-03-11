@@ -1,9 +1,8 @@
 local M = {}
 
 -- TODO: go through all settings.. any missing? any that shouldn't be here?
-function M.get(spec, config)
+function M.get(spec, opt)
   local color = spec.color
-  local transparent = config.transparent
 
   -- stylua: ignore
   return {
@@ -38,9 +37,9 @@ function M.get(spec, config)
     -- MsgSeparator    = {}, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg      = { fg = color.orange, style = "bold" }, -- |more-prompt|
     NonText      = { fg = color.border.normal }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal       = { fg = color.text.normal, bg = transparent and color.none or color.background.normal }, -- normal text
+    Normal       = { fg = color.text.normal, bg = opt.transparent and color.none or color.background.normal }, -- normal text
     NormalFloat  = { fg = color.text.normal, bg = color.background.normal }, -- Normal text in floating windows.
-    NormalNC     = { fg = color.text.normal, bg = transparent and color.none or color.background.normal }, -- normal text in non-current windows
+    NormalNC     = { fg = color.text.normal, bg = opt.transparent and color.none or color.background.normal }, -- normal text in non-current windows
     FloatBorder  = { fg = color.border.normal },
     Pmenu        = { fg = color.text.normal, bg = color.border.normal }, -- Popup menu: normal item.
     PmenuSel     = { bg = color.conceal }, -- Popup menu: selected item.
@@ -71,8 +70,8 @@ function M.get(spec, config)
     WarningMsg   = { fg = color.yellow }, -- warning messages
     Whitespace   = { fg = color.conceal }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     WildMenu     = { link = "Pmenu" }, -- current match in 'wildmenu' completion
-    WinBar       = { fg = color.conceal, bg = transparent and color.none or color.background.normal, style = "bold" }, -- Window bar of current window.
-    WinBarNC     = { fg = color.conceal, bg = transparent and color.none or color.background.normal, style = "bold" }, --Window bar of not-current windows.
+    WinBar       = { fg = color.conceal, bg = opt.transparent and color.none or color.background.normal, style = "bold" }, -- Window bar of current window.
+    WinBarNC     = { fg = color.conceal, bg = opt.transparent and color.none or color.background.normal, style = "bold" }, --Window bar of not-current windows.
     WinSeparator = { fg = color.border.accent, style = "bold" }, -- The column separating vertically split windows
     -- qfLineNr        = {},
     -- qfFileName      = {},

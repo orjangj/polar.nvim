@@ -73,11 +73,11 @@ function M.get(spec, config, opts)
 	  ["@text.diff.delete"]       = { link = "diffDelete" }, -- deleted text (for diff files)
     -- }}}
     -- {{{ Types
-    ["@attribute"]       = { default = true, link = "PreProc" },   -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
+    ["@attribute"]       = { default = true, link = "PreProc" },       -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
     ["@storageclass"]    = { default = true, link = "StorageClass" },
     ["@structure"]       = { default = true, link = "Structure" },
-    ["@type"]            = { default = true, link = "Type" }, -- Type (and class) definitions and annotations.
-    ["@type.builtin"]    = { link = "Special" }, -- Built-in types: `i32` in Rust.
+    ["@type"]            = { default = true, link = "Type" },          -- Type (and class) definitions and annotations.
+    ["@type.builtin"]    = { link = "Special" },                       -- Built-in types: `i32` in Rust.
     ["@type.definition"] = { default = true, link = "Typedef" },
     -- }}}
     -- Tags {{{

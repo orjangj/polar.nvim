@@ -1,30 +1,29 @@
 local M = {}
 
-function M.get(spec, config)
+function M.get(spec, opt)
   local color = spec.color
-  local style = config.styles
 
   -- stylua: ignore
   return {
-    Comment        = { fg = color.comments, style = style.comments }, -- any comment
+    Comment        = { fg = color.comments, style = opt.styles.comments }, -- (preferred) any comment
     -- Constants {{{
-    Constant       = { fg = color.constants, style = style.constants }, -- any constant
-    String         = { fg = color.strings, style = style.strings }, -- a string constant: "this is a string"
+    Constant       = { fg = color.constants, style = opt.styles.constants }, -- (preferred) any constant
+    String         = { fg = color.strings, style = opt.styles.strings }, -- a string constant: "this is a string"
     Character      = { link = "String" }, -- a character constant: 'c', '\n'
-    Number         = { fg = color.numbers, style = style.numbers }, -- a number constant: 234, 0xff
+    Number         = { fg = color.numbers, style = opt.styles.numbers }, -- a number constant: 234, 0xff
     Boolean        = { link = "Number" }, -- a boolean constant: TRUE, false
     Float          = { link = "Number" }, -- a floating point constant: 2.3e10
     -- }}}
     -- Identifiers {{{
-    Identifier     = { fg = color.variables, style = style.variables }, -- any variable name
-    Function       = { fg = color.functions, style = style.functions }, -- function name (also: methods for classes)
+    Identifier     = { fg = color.variables, style = opt.styles.variables }, -- (preferred) any variable name
+    Function       = { fg = color.functions, style = opt.styles.functions }, -- function name (also: methods for classes)
     -- }}}
     -- Statements {{{
-    Statement      = { fg = color.keywords, style = style.keywords }, -- (preferred) any statement
-    Conditional    = { fg = color.conditionals, style = style.conditionals }, -- if, then, else, endif, switch, etc.
+    Statement      = { fg = color.keywords, style = opt.styles.keywords }, -- (preferred) any statement
+    Conditional    = { fg = color.conditionals, style = opt.styles.conditionals }, -- if, then, else, endif, switch, etc.
     Repeat         = { link = "Conditional" }, -- for, do, while, etc.
     Label          = { link = "Conditional" }, -- case, default, etc.
-    Operator       = { fg = color.operators, style = style.operators }, -- "sizeof", "+", "*", etc.
+    Operator       = { fg = color.operators, style = opt.styles.operators }, -- "sizeof", "+", "*", etc.
     Keyword        = { link = "Operator" }, -- any other keyword
     Exception      = { link = "Operator" }, -- try, catch, throw
     -- }}}
@@ -36,7 +35,7 @@ function M.get(spec, config)
     PreCondit      = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
     -- }}}
     -- Types {{{
-    Type           = { fg = color.types, style = style.types }, -- (preferred) int, long, char, etc.
+    Type           = { fg = color.types, style = opt.styles.types }, -- (preferred) int, long, char, etc.
     StorageClass   = { link = "Type" }, -- static, register, volatile, etc.
     Structure      = { link = "Type" }, -- struct, union, enum, etc.
     Typedef        = { link = "Type" }, -- A typedef
