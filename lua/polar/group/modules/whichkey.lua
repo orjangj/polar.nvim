@@ -9,11 +9,11 @@ function M.get(spec, config, opts)
   return {
     WhichKey          = { fg = color.text.normal, style = "bold" },
     WhichKeyGroup     = { fg = color.foreground.focus },
-    WhichKeySeperator = { fg = color.foreground.focus },
+    WhichKeySeparator = { default = true, link = "Comment" },
     WhichKeyDesc      = { fg = color.foreground.normal },
-    WhichKeyFloat     = { bg = color.border.normal },
-    WhichKeyBorder    = { link = "FloatBorder" },
-    WhichKeyValue     = { link = "Comment" },
+    WhichKeyFloat     = { default = true, link = "NormalFloat" },
+    WhichKeyBorder    = { default = true, link = "FloatBorder" },
+    WhichKeyValue     = { default = true, link = "Comment" },
   }
 end
 

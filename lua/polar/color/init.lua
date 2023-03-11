@@ -31,7 +31,7 @@ M.blue    = nord9
 M.magenta = nord15
 M.teal    = nord7
 M.cyan    = nord8
-M.white   = nord4
+M.white   = nord5
 M.orange  = nord12
 
 -- Editor
@@ -46,7 +46,8 @@ M.codeblock  = shade.darken(M.background.normal, 0.03)
 M.directory  = { normal = M.cyan, accent = M.blue }
 M.filename   = M.white
 M.foreground = { normal = nord8, accent = nord7, focus = nord9, elevated = nord10 }
-M.text       = { normal = nord4, accent = nord5, focus = nord6 }
+M.text       = { normal = nord5, accent = nord4, focus = nord6 }
+M.search     = M.yellow
 
 -- Syntax
 M.conditionals  = M.blue
@@ -65,8 +66,8 @@ M.diagnostic = {
   error   = M.red,
   warning = M.yellow,
   success = M.green,
-  info    = M.magenta,
-  hint    = M.orange,
+  info    = M.blue,
+  hint    = M.magenta,
 }
 M.diff = {
   add    = shade.blend(M.green, M.background.normal, 0.25),
@@ -85,7 +86,7 @@ M.terminal = {
   M.cyan,
   M.white,
   -- bright
-  nord1,
+  nord3,
   M.red,
   M.green,
   M.yellow,

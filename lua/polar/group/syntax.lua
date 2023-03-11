@@ -7,14 +7,19 @@ function M.get(spec, config)
   -- stylua: ignore
   return {
     Comment        = { fg = color.comments, style = style.comments }, -- any comment
-    Constant       = { fg = color.constants, style = style.constants }, -- (preferred) any constant
+    -- Constants {{{
+    Constant       = { fg = color.constants, style = style.constants }, -- any constant
     String         = { fg = color.strings, style = style.strings }, -- a string constant: "this is a string"
     Character      = { link = "String" }, -- a character constant: 'c', '\n'
     Number         = { fg = color.numbers, style = style.numbers }, -- a number constant: 234, 0xff
     Boolean        = { link = "Number" }, -- a boolean constant: TRUE, false
     Float          = { link = "Number" }, -- a floating point constant: 2.3e10
-    Identifier     = { fg = color.variables, style = style.variables }, -- (preferred) any variable name
+    -- }}}
+    -- Identifiers {{{
+    Identifier     = { fg = color.variables, style = style.variables }, -- any variable name
     Function       = { fg = color.functions, style = style.functions }, -- function name (also: methods for classes)
+    -- }}}
+    -- Statements {{{
     Statement      = { fg = color.keywords, style = style.keywords }, -- (preferred) any statement
     Conditional    = { fg = color.conditionals, style = style.conditionals }, -- if, then, else, endif, switch, etc.
     Repeat         = { link = "Conditional" }, -- for, do, while, etc.
@@ -22,31 +27,38 @@ function M.get(spec, config)
     Operator       = { fg = color.operators, style = style.operators }, -- "sizeof", "+", "*", etc.
     Keyword        = { link = "Operator" }, -- any other keyword
     Exception      = { link = "Operator" }, -- try, catch, throw
+    -- }}}
+    -- Preprocessor {{{
     PreProc        = { fg = color.preprocs }, -- (preferred) generic Preprocessor
     Include        = { link = "PreProc" }, -- preprocessor #include
     Define         = { link = "PreProc" }, -- preprocessor #define
     Macro          = { link = "PreProc" }, -- same as Define
     PreCondit      = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
+    -- }}}
+    -- Types {{{
     Type           = { fg = color.types, style = style.types }, -- (preferred) int, long, char, etc.
     StorageClass   = { link = "Type" }, -- static, register, volatile, etc.
     Structure      = { link = "Type" }, -- struct, union, enum, etc.
     Typedef        = { link = "Type" }, -- A typedef
+    -- }}}
+    -- Special {{{
     Special        = { fg = color.special }, -- (preferred) any special symbol
     SpecialChar    = { link = "Special" }, -- special character in a constant
     Tag            = { link = "Special" }, -- you can use CTRL-] on this
     Delimiter      = { link = "Special" }, -- character that needs attention
     SpecialComment = { link = "Special" }, -- special things inside a comment
     Debug          = { link = "Special" }, -- debugging statements
-    Conceal        = { fg = color.none, bg = color.background.normal },
+    -- }}}
     Underlined     = { style = "underline" }, -- (preferred) text that stands out, HTML links
     Bold           = { style = "bold" },
     Italic         = { style = "italic" },
+    -- Ignore         = {}, -- (preferred) left blank, hidden  |hl-Ignore|
+    Error          = { fg = color.diagnostic.error }, -- (preferred) any erroneous construct
+    Todo           = { fg = color.background.normal, bg = color.diagnostic.info }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    -- Misc {{{
     healthError    = { fg = color.diagnostic.error },
     healthWarning  = { fg = color.diagnostic.warning },
     healthSuccess  = { fg = color.diagnostic.success },
-    -- Ignore         = {}, -- (preferred) left blank, hidden  |hl-Ignore|
-    Error          = { fg = color.diagnostic.error }, -- (preferred) any erroneous construct
-    Todo           = { fg = color.cyan, bg = color.background.normal }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     qfLineNr       = { link = "lineNr" },
     qfFileName     = { link = "Directory" },
     diffAdded      = { fg = color.green }, -- Added lines ("^+.*" | "^>.*")
@@ -90,6 +102,7 @@ function M.get(spec, config)
     --markdownOrderedListMarker = { fg = colors.red },
     --markdownRule = { fg = colors.purple },
     --markdownUrl = { fg = colors.cyan, style = "underline" },
+    -- }}}
   }
 end
 

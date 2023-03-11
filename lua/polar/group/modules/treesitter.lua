@@ -2,154 +2,90 @@ local M = {}
 
 function M.get(spec, config, opts)
   local color = spec.color
-  local style = config.styles
 
-  -- TODO: Fix deprecations
-  if not vim.treesitter.highlighter.hl_map then -- https://github.com/nvim-treesitter/nvim-treesitter/pull/3365
-    -- stylua: ignore
-    return {
-      ["@attribute"]           = { fg = color.magenta }, -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
-      ["@boolean"]             = { link = "Boolean" }, -- Boolean literals: `True` and `False` in Python.
-      ["@character"]           = { link = "Character" }, -- Character literals: `'a'` in C.
-      ["@comment"]             = { link = "Comment" }, -- Line comments and block comments.
-      ["@conditional"]         = { link = "Conditional" }, -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
-      ["@constant"]            = { link = "Constant" }, -- Constants identifiers. These might not be semantically constant.  E.g. uppercase variables in Python.
-      ["@constant.builtin"]    = { fg = color.magenta, style = style.constants }, -- Built-in constant values: `nil` in Lua.
-      ["@constant.macro"]      = { fg = color.magenta, style = style.constants }, -- Constants defined by macros: `NULL` in C.
-      ["@constructor"]           = { fg = color.blue }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-      ["@error"]                 = { fg = color.red }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
-      -- ["@exception"]           = {}, -- Exception related keywords: `try`, `except`, `finally` in Python.
-      ["@field"]                 = { fg = color.white }, -- Object and struct fields.
-      ["@float"]                 = { link = "Constant" }, -- Floating-point number literals.
-      -- ["@function"]            = {}, -- Function calls and definitions.
-      ["@function.builtin"]      = { fg = color.blue, style = style.functions }, -- Built-in functions: `print` in Lua.
-      ["@function.macro"]        = { fg = color.blue, style = style.functions }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-      -- ["@include"]             = {}, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
-      -- ["@keyword"]             = {}, -- Keywords that don't fit into other categories.
-      ["@keyword.function"]      = { fg = color.blue, style = style.functions }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
-      ["@keyword.operator"]      = { fg = color.blue, style = "bold" }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
-      -- ["@keyword.return"]      = {}, -- Keywords like `return` and `yield`.
-      ["@label"]                 = { fg = color.blue }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
-      -- ["@method"]              = {}, -- Method calls and definitions.
-      ["@namespace"]             = { fg = color.magenta }, -- Identifiers referring to modules and namespaces.
-      -- ["@none"]                = {}, -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
-      ["@number"]                = { link = "Constant" }, -- Numeric literals that don't fit into other categories.
-      ["@operator"]              = { fg = color.blue, style = style.operators }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
-      -- ["@parameter"]           = {}, -- Parameters of a function.
-      -- ["@parameter.reference"] = {}, -- References to parameters of a function.
-      ["@property"]              = { link = "@field" }, -- Same as `@field`.
-      ["@punctuation.delimiter"] = { fg = color.white }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
-      ["@punctuation.bracket"]   = { fg = color.white }, -- Brackets, braces, parentheses, etc.
-      ["@punctuation.special"]   = { fg = color.white }, -- Special punctuation that doesn't fit into the previous categories.
-      -- ["@repeat"]              = {}, -- Keywords related to loops: `for`, `while`, etc.
-      ["@string"]                = { link = "String" }, -- String literals.
-      ["@string.regex"]          = { fg = color.yellow, style = style.strings }, -- Regular expression literals.
-      ["@string.escape"]         = { fg = color.yellow, style = "bold" }, -- Escape characters within a string: `\n`, `\t`, etc.
-      ["@string.special"]        = { link = "Special" }, -- Strings with special meaning that don't fit into the previous categories.
-      -- ["@symbol"]              = {}, -- Identifiers referring to symbols or atoms.
-      ["@tag"]                   = { link = "Keyword" }, -- Tags like HTML tag names.
-      ["@tag.attribute"]         = { link = "Function" }, -- HTML tag attributes.
-      ["@tag.delimiter"]         = { link = "Delimiter" }, -- Tag delimiters like `<` `>` `/`.
-      ["@text"]                  = { fg = color.white }, -- Non-structured text. Like text in a markup language.
-      ["@text.reference"]        = { fg = color.blue }, -- Footnotes, text references, citations, etc.
-      ["@text.strong"]           = { fg = color.white, style = "bold" }, -- Text to be represented in bold.
-      ["@text.emphasis"]         = { fg = color.white, style = "italic" }, -- Text to be represented with emphasis.
-      ["@text.underline"]        = { fg = color.white, style = "underline" }, -- Text to be represented with an underline.
-      ["@text.strike"]           = { fg = color.white, style = "strikethrough" }, -- Strikethrough text.
-      ["@text.title"]            = { fg = color.cyan, style = "bold" }, -- Text that is part of a title.
-      ["@text.literal"]          = { fg = color.green }, -- Literal or verbatim text.
-      ["@text.uri"]              = { fg = color.white, style = "bold" }, -- URIs like hyperlinks or email addresses.
-      -- ["@text.math"]                = {}, -- Math environments like LaTeX's `$ ... $`
-      -- ["@text.environment"]         = {}, -- Text environments of markup languages.
-      -- ["@text.environment.name"]    = {}, -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
-      ["@text.todo"]             = { fg = color.background.normal, bg = color.yellow }, -- todo notes
-      ["@text.todo.checked"]     = { fg = color.green }, -- todo notes
-      ["@text.todo.unchecked"]   = { fg = color.yellow }, -- todo notes
-      ["@text.note"]             = { fg = color.orange }, -- Text representation of an informational note.
-      ["@text.warning"]          = { fg = color.yellow }, -- Text representation of a warning note.
-      ["@text.danger"]           = { fg = color.red }, -- Text representation of a danger note.
-      ["@text.diff.add"]         = { link = "diffAdded" }, -- added text (for diff files)
-		  ["@text.diff.delete"]      = { link = "diffRemoved" }, -- deleted text (for diff files)
-      ["@type"]                  = { link = "Type" }, -- Type (and class) definitions and annotations.
-      ["@type.builtin"]          = { fg = color.magenta, style = style.types }, -- Built-in types: `i32` in Rust.
-      ["@variable"]              = { fg = color.white, style = style.variables }, -- Variable names that don't fit into other categories.
-      ["@variable.builtin"]      = { fg = color.blue, style = style.variables }, -- Variable names defined by the language: `this` or `self` in Javascript.
-
-      -- Languages ---------------------------------------------------------------
-      ["@field.rust"]     = { fg = color.white },
-      ["@tag.javascript"] = { fg = color.blue }, -- Tags like HTML tag names.
-      ["@tag.typescript"] = { fg = color.blue }, -- Tags like HTML tag names.
-    }
-  else
-    -- stylua: ignore
-    return {
-      TSAttribute       = { link = "Constant" }, -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
-      -- TSBoolean            = {}, -- Boolean literals: `True` and `False` in Python.
-      -- TSCharacter          = {}, -- Character literals: `'a'` in C.
-      -- TSComment            = {}, -- Line comments and block comments.
-      -- TSConditional        = {}, -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
-      -- TSConstant           = {}, -- Constants identifiers. These might not be semantically constant.  E.g. uppercase variables in Python.
-      TSConstBuiltin    = { fg = color.magenta, style = style.constants }, -- Built-in constant values: `nil` in Lua.
-      -- TSConstMacro         = {}, -- Constants defined by macros: `NULL` in C.
-      TSConstructor     = { fg = color.blue }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-      TSError           = { fg = color.red }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
-      -- TSException          = {}, -- Exception related keywords: `try`, `except`, `finally` in Python.
-      TSField           = { fg = color.white }, -- Object and struct fields.
-      -- TSFloat              = {}, -- Floating-point number literals.
-      -- TSFunction           = {}, -- Function calls and definitions.
-      TSFuncBuiltin     = { fg = color.blue, style = style.functions }, -- Built-in functions: `print` in Lua.
-      TSFuncMacro       = { fg = color.blue, style = style.functions }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-      -- TSInclude            = {}, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
-      -- TSKeyword            = {}, -- Keywords that don't fit into other categories.
-      TSKeywordFunction = { fg = color.blue, style = style.functions }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
-      TSKeywordOperator = { fg = color.blue, style = "bold" }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
-      -- TSKeywordReturn      = {}, -- Keywords like `return` and `yield`.
-      -- TSLabel              = {}, -- GOTO labels: `label:` in C, and `::label::` in Lua.
-      -- TSMethod             = {}, -- Method calls and definitions.
-      TSNamespace       = { fg = color.magenta }, -- Identifiers referring to modules and namespaces.
-      -- TSNone               = {}, -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
-      -- TSNumber             = {}, -- Numeric literals that don't fit into other categories.
-      TSOperator        = { fg = color.blue, style = style.operators }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
-      -- TSParameter          = {}, -- Parameters of a function.
-      -- TSParameterReference = {}, -- References to parameters of a function.
-      TSProperty        = { link = "TSField" }, -- Same as `TSField`.
-      TSPunctDelimiter  = { fg = color.white }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
-      TSPunctBracket    = { fg = color.white }, -- Brackets, braces, parentheses, etc.
-      TSPunctSpecial    = { fg = color.white }, -- Special punctuation that doesn't fit into the previous categories.
-      -- TSRepeat             = {}, -- Keywords related to loops: `for`, `while`, etc.
-      -- TSString             = {}, -- String literals.
-      TSStringRegex     = { fg = color.yellow, style = style.strings }, -- Regular expression literals.
-      TSStringEscape    = { fg = color.yellow, style = "bold" }, -- Escape characters within a string: `\n`, `\t`, etc.
-      -- TSStringSpecial      = {}, -- Strings with special meaning that don't fit into the previous categories.
-      -- TSSymbol             = {}, -- Identifiers referring to symbols or atoms.
-      -- TSTag                = {}, -- Tags like HTML tag names.
-      -- TSTagAttribute       = {}, -- HTML tag attributes.
-      -- TSTagDelimiter       = {}, -- Tag delimiters like `<` `>` `/`.
-      -- TSText               = {}, -- Non-structured text. Like text in a markup language.
-      -- TSStrong             = {}, -- Text to be represented in bold.
-      -- TSEmphasis           = {}, -- Text to be represented with emphasis.
-      -- TSUnderline          = {}, -- Text to be represented with an underline.
-      -- TSStrike             = {}, -- Strikethrough text.
-      -- TSTitle              = {}, -- Text that is part of a title.
-      -- TSLiteral            = {}, -- Literal or verbatim text.
-      TSURI             = { fg = color.green, style = "bold" }, -- URIs like hyperlinks or email addresses.
-      -- TSMath               = {}, -- Math environments like LaTeX's `$ ... $`
-      TSTextReference   = { fg = color.blue }, -- Footnotes, text references, citations, etc.
-      -- TSEnvironment        = {}, -- Text environments of markup languages.
-      -- TSEnvironmentName    = {}, -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
-      TSNote            = { fg = color.orange }, -- Text representation of an informational note.
-      TSWarning         = { fg = color.yellow }, -- Text representation of a warning note.
-      TSDanger          = { fg = color.red }, -- Text representation of a danger note.
-      -- TSType               = {}, -- Type (and class) definitions and annotations.
-      TSTypeBuiltin     = { fg = color.magenta, style = style.types }, -- Built-in types: `i32` in Rust.
-      TSVariable        = { fg = color.white, style = style.variables }, -- Variable names that don't fit into other categories.
-      TSVariableBuiltin = { fg = color.blue, style = style.variables }, -- Variable names defined by the language: `this` or `self` in Javascript.
-
-      -- Languages ---------------------------------------------------------------
-      -- Rust
-      rustTSField = { fg = color.white },
-    }
-  end
+  -- stylua: ignore
+  return {
+    ["@comment"] = { default = true, link = "Comment" }, -- Line comments and block comments.
+    -- Constants {{{
+    ["@constant"]         = { default = true, link = "Constant" },    -- Constants identifiers. These might not be semantically constant.  E.g. uppercase variables in Python.
+    ["@constant.comment"] = { link = "Comment" },
+    ["@constant.builtin"] = { default = true, link = "PreProc" },     -- Built-in constant values: `nil` in Lua.
+    ["@constant.macro"]   = { default = true, link = "Define" },      -- Constants defined by macros: `NULL` in C.
+    ["@character"]        = { default = true, link = "Character" },   -- Character literals: `'a'` in C.
+    ["@boolean"]          = { default = true, link = "Boolean" },     -- Boolean literals: `True` and `False` in Python.
+    ["@float"]            = { default = true, link = "Float" },       -- Floating-point number literals.
+    ["@number"]           = { default = true, link = "Number" },      -- Numeric literals that don't fit into other categories.
+    ["@string"]           = { default = true, link = "String" },      -- String literals.
+    ["@string.regex"]     = { fg = color.strings, italic = true },    -- Regular expression literals.
+    ["@string.escape"]    = { default = true, link = "SpecialChar" }, -- Escape characters within a string: `\n`, `\t`, etc.
+    ["@string.special"]   = { default = true, link = "SpecialChar" }, -- Strings with special meaning that don't fit into the previous categories.
+    -- }}}
+    -- Identifiers {{{
+    ["@constructor"]      = { default = true, link = "Special" },    -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+    ["@field"]            = { default = true, link = "Identifier" }, -- Object and struct fields.
+    ["@function"]         = { default = true, link = "Function" },   -- Function calls and definitions.
+    ["@function.builtin"] = { default = true, link = "Special" },    -- Built-in functions: `print` in Lua.
+    ["@function.macro"]   = { default = true, link = "Macro" },      -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
+    ["@namespace"]        = { default = true, link = "Identifier" }, -- Identifiers referring to modules and namespaces.
+    ["@method"]           = { default = true, link = "Function" },   -- Method calls and definitions.
+    ["@parameter"]        = { default = true, link = "Identifier" }, -- Parameters of a function.
+    ["@property"]         = { default = true, link = "Identifier" }, -- Same as `@field`.
+    ["@variable"]         = { default = true, link = "Identifier" }, -- Variable names that don't fit into other categories.
+    ["@variable.builtin"] = { link = "Special" },                    -- Variable names defined by the language: `this` or `self` in Javascript.
+    -- }}}
+    --Keywords {{{
+    ["@conditional"]      = { default = true, link = "Conditional" }, -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
+    ["@exception"]        = { default = true, link = "Exception" },   -- Exception related keywords: `try`, `except`, `finally` in Python.
+    ["@label"]            = { default = true, link = "Label" },       -- GOTO labels: `label:` in C, and `::label::` in Lua.
+    ["@include"]          = { default = true, link = "Include" },     -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
+    ["@keyword"]          = { default = true, link = "keyword" },     -- Keywords that don't fit into other categories.
+    ["@operator"]         = { default = true, link = "Operator" },    -- Binary or unary operators: `+`, and also `->` and `*` in C.
+    ["@repeat"]           = { default = true, link = "Repeat" },      -- Keywords related to loops: `for`, `while`, etc.
+    -- }}}
+    -- Misc {{{
+    ["@debug"]                  = { default = true, link = "Debug" },
+    ["@error"]                  = { link = "Error" },   -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code.
+    ["punctuation"]             = { default = true, link = "Delimiter" },
+    ["@punctuation.delimiter"]  = { fg = color.white }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
+    ["@punctuation.bracket"]    = { fg = color.white }, -- Brackets, braces, parentheses, etc.
+    ["@punctuation.special"]    = { fg = color.white }, -- Special punctuation that doesn't fit into the previous categories.
+    -- }}}
+    -- Text {{{
+    ["@text"]                   = { fg = color.text.normal }, -- Non-structured text. Like text in a markup language.
+    ["@text.reference"]         = { fg = color.blue }, -- Footnotes, text references, citations, etc.
+    ["@text.strong"]            = { fg = color.white, style = "bold" }, -- Text to be represented in bold.
+    ["@text.emphasis"]          = { fg = color.white, style = "italic" }, -- Text to be represented with emphasis.
+    ["@text.underline"]         = { fg = color.white, style = "underline" }, -- Text to be represented with an underline.
+    ["@text.strike"]            = { fg = color.white, style = "strikethrough" }, -- Strikethrough text.
+    ["@text.title"]             = { fg = color.cyan, style = "bold" }, -- Text that is part of a title.
+    ["@text.literal"]           = { fg = color.green }, -- Literal or verbatim text.
+    ["@text.uri"]               = { fg = color.white, style = "bold,italic" }, -- URIs like hyperlinks or email addresses.
+    -- ["@text.math"]             = {}, -- Math environments like LaTeX's `$ ... $`
+    -- ["@text.environment"]      = {}, -- Text environments of markup languages.
+    -- ["@text.environment.name"] = {}, -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
+    ["@text.todo"]              = { fg = color.background.normal, bg = color.diagnostic.info }, -- todo notes
+    ["@text.todo.checked"]      = { fg = color.green }, -- todo notes
+    ["@text.todo.unchecked"]    = { fg = color.yellow }, -- todo notes
+    ["@text.note"]              = { fg = color.background.normal, bg = color.diagnostic.hint }, -- Text representation of an informational note.
+    ["@text.warning"]           = { fg = color.background.normal, bg = color.diagnostic.warning }, -- Text representation of a warning note.
+    ["@text.danger"]            = { fg = color.background.normal, bg = color.diagnostic.error }, -- Text representation of a danger note.
+    ["@text.diff.add"]          = { link = "diffAdd" }, -- added text (for diff files)
+	  ["@text.diff.delete"]       = { link = "diffDelete" }, -- deleted text (for diff files)
+    -- }}}
+    -- {{{ Types
+    ["@attribute"]       = { default = true, link = "PreProc" },   -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
+    ["@storageclass"]    = { default = true, link = "StorageClass" },
+    ["@structure"]       = { default = true, link = "Structure" },
+    ["@type"]            = { default = true, link = "Type" }, -- Type (and class) definitions and annotations.
+    ["@type.builtin"]    = { link = "Special" }, -- Built-in types: `i32` in Rust.
+    ["@type.definition"] = { default = true, link = "Typedef" },
+    -- }}}
+    -- Tags {{{
+    ["@tag"]           = { default = true, link = "Tag" }, -- Tags like HTML tag names.
+    ["@tag.attribute"] = { link = "Function" }, -- HTML tag attributes.
+    ["@tag.delimiter"] = { link = "Delimiter" }, -- Tag delimiters like `<` `>` `/`.
+    -- }}}
+  }
 end
 
 return M
