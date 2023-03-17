@@ -17,7 +17,7 @@ function M.get(spec, config, opts)
     TelescopePreviewNormal          = { default = true, link = "TelescopeNormal" },
     TelescopePromptNormal           = { default = true, link = "TelescopeNormal" },
     TelescopeResultsNormal          = { default = true, link = "TelescopeNormal" },
-    TelescopeBorder                 = { fg = color.border.accent },
+    TelescopeBorder                 = { fg = color.border.normal },
     TelescopePromptBorder           = { default = true, link = "TelescopeBorder" },
     TelescopeResultsBorder          = { default = true, link = "TelescopeBorder" },
     TelescopePreviewBorder          = { default = true, link = "TelescopeBorder" },

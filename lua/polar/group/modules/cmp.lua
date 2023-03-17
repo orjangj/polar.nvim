@@ -6,37 +6,34 @@ function M.get(spec, config, opts)
   local color = spec.color
   -- stylua: ignore
   return {
-    CmpItemKind              = { fg = color.magenta }, -- TODO
-    CmpDocumentation         = { fg = color.text.normal, bg = color.background.normal },
-    CmpDocumentationBorder   = { fg = color.background.accent, bg = color.background.normal },
     CmpItemAbbr              = { fg = color.text.normal },
-    CmpItemAbbrDeprecated    = { fg = color.background.normal, style = "strikethrough" },
-    CmpItemAbbrMatch         = { fg = color.foreground.normal },
-    CmpItemAbbrMatchFuzzy    = { fg = color.foreground.normal },
-    CmpItemMenu              = { fg = color.foreground.normal },
-
+    CmpItemAbbrDeprecated    = { fg = color.background.accent, style = "strikethrough" },
+    CmpItemAbbrMatch         = { fg = color.text.focus },
+    CmpItemAbbrMatchFuzzy    = { fg = color.text.focus },
+    CmpItemKind              = { fg = color.magenta }, -- TODO
     CmpItemKindDefault       = { fg = color.text.normal },
-    CmpItemKindKeyword       = { link = "Identifier" },
-    CmpItemKindVariable      = { link = "TSVariable" },
-    CmpItemKindConstant      = { link = "TSConstant" },
-    CmpItemKindReference     = { link = "Keyword" },
-    CmpItemKindValue         = { link = "Keyword" },
+    CmpItemKindKeyword       = { link = "Keyword" },
+    CmpItemKindVariable      = { link = "Identifier" },
+    CmpItemKindConstant      = { link = "Constant" },
+    CmpItemKindReference     = { link = "Special" },
+    CmpItemKindValue         = { link = "Number" },
     CmpItemKindFunction      = { link = "Function" },
     CmpItemKindMethod        = { link = "Function" },
-    CmpItemKindConstructor   = { link = "Function" },
+    CmpItemKindConstructor   = { link = "Special" },
     CmpItemKindInterface     = { link = "Constant" },
     CmpItemKindEvent         = { link = "Constant" },
     CmpItemKindEnum          = { link = "Constant" },
     CmpItemKindUnit          = { link = "Constant" },
     CmpItemKindClass         = { link = "Type" },
     CmpItemKindStruct        = { link = "Type" },
-    CmpItemKindModule        = { link = "TSNamespace" },
-    CmpItemKindProperty      = { link = "TSProperty" },
-    CmpItemKindField         = { link = "TSField" },
-    CmpItemKindTypeParameter = { link = "TSField" },
-    CmpItemKindEnumMember    = { link = "TSField" },
+    CmpItemKindModule        = { link = "Identifier" },
+    CmpItemKindProperty      = { link = "Identifier" },
+    CmpItemKindField         = { link = "Identifier" },
+    CmpItemKindTypeParameter = { link = "Identifier" },
+    CmpItemKindEnumMember    = { link = "Identifier" },
     CmpItemKindOperator      = { link = "Operator" },
     CmpItemKindSnippet       = { fg = color.text.normal },
+    CmpItemMenu              = { fg = color.text.focus },
   }
 end
 
