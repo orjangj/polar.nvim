@@ -39,7 +39,7 @@ M.border = { normal = nord3, focus = M.cyan, urgent = M.yellow, critical = M.red
 M.cursorline = nord1
 M.conceal = nord3
 M.cursor = M.blue
-M.codeblock = shade.darken(M.background.normal, 0.03)
+M.codeblock = shade.darken(M.background.normal, 0.02)
 M.directory = { normal = M.cyan, accent = M.blue }
 M.filename = M.white
 M.foreground = { normal = nord8, accent = nord7, focus = nord9, elevated = nord10 }
